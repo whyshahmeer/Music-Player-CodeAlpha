@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jennie Ruby Jane Player</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="shortcut icon" href="images/mp-fevicon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+  <!-- Custom Cursor -->
+  <style>
+    body {
+      cursor: url('https://cur.cursors-4u.net/girls/gir-10/gir989.cur'), auto;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Main Player Container -->
+  <div class="main-div">
+    <!-- Navigation Bar -->
+    <div class="nav-bar">
+      <div class="icons-div">
+        <ion-icon name="home-sharp" style="color: white;"></ion-icon>
+        <ion-icon name="grid" id="list"></ion-icon>
+
+        <!-- Playlist Panel -->
+        <div class="song-list" id="songList">
+          <h5 id="listHeading">Jennie's Playlist</h5>
+          <ul>
+            <li data-index="0">JENNIE<br><span>Jennie Ruby Jane</span></li>
+            <li data-index="1">Start a War<br><span>Jennie Ruby Jane</span></li>
+            <li data-index="2">Twin<br><span>Jennie Ruby Jane</span></li>
+            <li data-index="3">Handlebars<br><span>Jennie Ruby Jane</span></li>
+            <li data-index="4">Seoul City<br><span>Jennie Ruby Jane</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="temp-div">24°C</div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+      <!-- Status Icons -->
+      <div class="first-div">
+        <div class="iconsBar">
+          <ion-icon name="wifi-sharp"></ion-icon>
+          <ion-icon name="battery-full-sharp"></ion-icon>
+          <ion-icon name="bluetooth"></ion-icon>
+        </div>
+        <div id="realTime"></div>
+      </div>
+
+      <!-- Song Section -->
+      <div class="second-div">
+        <div class="imageDiv">
+          <img id="songImage" src="images/mainImg.png" alt="Jennie Art" />
+        </div>
+
+        <div class="songDetailsDiv">
+          <div>
+            <div id="songTitle">Loading...</div>
+            <div id="singerName">Jennie Ruby Jane</div>
+          </div>
+
+          <div>
+            <input type="range" id="progressBar" value="0" />
+            <div id="time">00:00 / 00:00</div>
+            <audio id="audio" preload="metadata"></audio>
+          </div>
+
+          <div class="button-div">
+            <button id="prevBtn">
+              <ion-icon name="play-skip-back-sharp"></ion-icon>
+            </button>
+            <button id="playBtn">
+              <ion-icon id="playIcon" name="play-sharp"></ion-icon>
+            </button>
+            <button id="nextBtn">
+              <ion-icon name="play-skip-forward-sharp"></ion-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Extra Status Icons -->
+  <div class="status-icons">
+    <ion-icon id="wifiIcon" name="wifi-outline"></ion-icon>
+    <ion-icon id="btIcon" name="bluetooth-outline"></ion-icon>
+    <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="1" />
+  </div>
+
+  <!-- Particle Background -->
+  <div id="particles-js"></div>
+
+  <!-- Dark Mode Toggle Button -->
+  <button id="darkModeToggle">🌙</button>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+  <!-- Particle & Dark Mode Config -->
+  <script>
+    // Particles.js config
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 30 },
+        color: { value: "#ff1a1a" },
+        shape: { type: "circle" },
+        opacity: { value: 0.4 },
+        size: { value: 3 },
+        move: { enable: true, speed: 1 }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: true, mode: "repulse" }
+        }
+      },
+      retina_detect: true
+    });
+
+    // Dark Mode Toggle
+    const toggleBtn = document.getElementById("darkModeToggle");
+    toggleBtn.style.cssText = `
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      background: #ff1a1a;
+      border: none;
+      padding: 10px 15px;
+      color: white;
+      font-size: 1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #ff1a1a;
+    `;
+
+    let darkMode = true;
+    toggleBtn.addEventListener("click", () => {
+      darkMode = !darkMode;
+      document.body.style.background = darkMode
+        ? "linear-gradient(to bottom, #1a0000, #000000)"
+        : "linear-gradient(to bottom, #ffffff, #ffe6e6)";
+      document.querySelector(".main-div").style.background = darkMode
+        ? "linear-gradient(to right, #2b0000, #000000)"
+        : "linear-gradient(to right, #fff0f0, #ffffff)";
+      toggleBtn.textContent = darkMode ? "🌙" : "☀️";
+    });
+  </script>
+</body>
+</html>
